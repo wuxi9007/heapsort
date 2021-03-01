@@ -13,29 +13,29 @@
 #include "sort.h"	// sort function prototypes
 
 int main( int argc, char** argv ) {
-	// DO NOT MODIFY THIS PART OF THE CODE
-	int n;
-	scanf("%d", &n);
-	v_struct items[n];
+    // DO NOT MODIFY THIS PART OF THE CODE
+    int n;
+    scanf("%d", &n);
+    v_struct items[n];
 
-	// Scan in number of v_structs in array, followed by priority and value for each v_struct.
-	for (int i = 0; i < n; i++) {
-		scanf("%d %d", &items[i].priority, &items[i].value);
-		items[i].count = 0;
-	}
-	
-	// The section below is meant to be edited so that you can call your implemented functions on the array and then print it.
-	// You can comment / uncomment sections of code based on what you are testing and add new function calls / print statements if you wish to test in a different order.
-	
-	printf("+++++++++++++++++++++++\n");
-	printf("Initial state of heap:\n");
-	print_array( items, n );
-	printf("+++++++++++++++++++++++\n");
-	
-	// printf("Max heapification on value:\n");
-	// max_heapify_value( items, n );
-	// print_array( items, n);
-	// printf("+++++++++++++++++++++++\n");
+    // Scan in number of v_structs in array, followed by priority and value for each v_struct.
+    for (int i = 0; i < n; i++) {
+        scanf("%d %d", &items[i].priority, &items[i].value);
+        items[i].count = 0;
+    }
+
+    // The section below is meant to be edited so that you can call your implemented functions on the array and then print it.
+    // You can comment / uncomment sections of code based on what you are testing and add new function calls / print statements if you wish to test in a different order.
+
+    printf("+++++++++++++++++++++++\n");
+    printf("Initial state of heap:\n");
+    print_array( items, n );
+    printf("+++++++++++++++++++++++\n");
+
+    printf("Max heapification on value:\n");
+    max_heapify_value( items, n );
+    print_array( items, n);
+    printf("+++++++++++++++++++++++\n");
 	
 	// printf("Min heapification on value:\n");
 	// min_heapify_value( items, n );
