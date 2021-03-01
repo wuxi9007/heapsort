@@ -23,10 +23,9 @@ void swap (v_struct* p1, v_struct* p2) {
     p2->count++;
 }
 
-void checkAndSwap (int childIndex, int parentIndex, int array_length, v_struct* v_array, int *largestIndex) {
+void check (int childIndex, int* largestIndex, int array_length, v_struct* v_array) {
     if (childIndex < array_length) {
-        if (v_array[childIndex].value > v_array[parentIndex].value) {
-            swap(&v_array[parentIndex], &v_array[childIndex]);
+        if (v_array[childIndex].value > v_array[*largestIndex].value) {
             *largestIndex = childIndex;
         } 
     } 
@@ -45,24 +44,24 @@ void print_array(v_struct* v_array, int array_length) {
 void max_heapify_value( v_struct* v_array, int array_length ) {
     //check each node in the array -> through a for loop, starting index is array-length -1, ending index is 0
 
-    for (int i = array_length-1; i > 0; i--) {
-        int currentIndex = i; 
+    for (int i = array_length / 2 - 1; i >= 0; i--) {
+        int parentIndex = i; 
         //while loop that continues when the currentIndex is smaller than the arraylength
-        while (currentIndex < array_length){
-            
-            int parentIndex = (currentIndex - 1) / 2;
+        while (parentIndex < array_length){
+             
             int leftChildIndex = parentIndex * 2 + 1;
             int rightChildIndex = parentIndex * 2 + 2;   
-
-            int *largestIndex = &parentIndex;
+	    int parentTmp = parentIndex;
+            int *largestIndex = &parentTmp;
 
             //check if left child exists, if so, swap if necessary 
-            checkAndSwap(leftChildIndex, parentIndex, array_length, v_array, largestIndex);
-            checkAndSwap(rightChildIndex, parentIndex, array_length, v_array, largestIndex);
-            if (currentIndex == *largestIndex) {
+            check(leftChildIndex, largestIndex, array_length, v_array);
+            check(rightChildIndex, largestIndex, array_length, v_array);
+            if (parentIndex == *largestIndex) {
                   break;
             }
-            currentIndex = *largestIndex;
+	    swap(&v_array[parentIndex], &v_array[*largestIndex]);
+            parentIndex = *largestIndex;
 
         }  
     }
